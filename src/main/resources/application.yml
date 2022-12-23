@@ -1,0 +1,26 @@
+server:
+    port: 8080
+
+spring:
+    h2:
+        console:
+            path: /h2-console
+            enabled: true
+            settings:
+                web-allow-others: true
+    datasource:
+        driver-class-name: org.h2.Driver
+        url: jdbc:h2:~/demo;auto_server=true
+        username: sa
+        password:
+    jpa:
+        database: H2
+        defer-datasource-initialization: true
+        show-sql: true
+        hibernate:
+            ddl-auto: create-drop
+        open-in-view: false
+    sql:
+        init:
+            mode: always
+
