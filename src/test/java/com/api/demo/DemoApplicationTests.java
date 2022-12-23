@@ -23,6 +23,6 @@ class DemoApplicationTests {
 
         log.info("toEntity : {}", inven);
 
-        Assert.assertEquals(inven.getPrdNm(), invenRequestDto.getPrdNm());
+        Assert.assertEquals(invenRequestDto.getPrdNm(), inven.getPrdNm());
     }
 }
