@@ -17,9 +17,9 @@ class DemoApplicationTests {
 
     @Test
     public void invenRequestToEntity() {
-        InvenRequestDto invenRequestDto = new InvenRequestDto("prd-a", null);
+        InvenRequestDto invenRequestDto = new InvenRequestDto("prd-a", null, 0);
 
-        Inven inven = invenRequestDto.toEntity(invenRequestDto);
+        Inven inven = invenRequestDto.toEntity();
 
         log.info("toEntity : {}", inven);
 

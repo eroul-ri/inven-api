@@ -11,9 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @RunWith(SpringRunner.class)
@@ -22,6 +24,9 @@ public class InvenRepositoryTests {
     @Autowired
     private InvenRepository invenRepository;
 
+    String prdNm = "prd-a";
+    String optnNm = "opt-aa";
+
     @Before
     @Sql(scripts = {"classpath:data.sql"})
     public void setUpBefore() {
@@ -29,14 +34,17 @@ public class InvenRepositoryTests {
     }
 
     public Inven getEntity(String prdNm, String optnNm) {
-        InvenRequestDto invenRequestDto = new InvenRequestDto(prdNm, optnNm);
+        InvenRequestDto invenRequestDto = new InvenRequestDto(prdNm, optnNm, 0);
 
-        return invenRequestDto.toEntity(invenRequestDto);
+        return invenRequestDto.toEntity();
     }
 
+    /**
+     * 상품명 조회
+     */
     @Test
     public void findByPrdNmTest() {
-        Inven inven = getEntity("prd-a", null);
+        Inven inven = getEntity(prdNm, null);
 
         List<Inven> invens = invenRepository.findByPrdNm(inven.getPrdNm());
 
@@ -45,14 +53,44 @@ public class InvenRepositoryTests {
         Assert.notNull(invens, "Invens is Null");
     }
 
+    /**
+     * 상품명 + 옵션명 조회
+     */
     @Test
     public void findByPrdNmAndOptnNmTest() {
-        Inven inven = getEntity("prd-a", "opt-aa");
+        Inven inven = getEntity(prdNm, optnNm);
 
-        List<Inven> invens = invenRepository.findByPrdNmAndOptnNm(inven.getPrdNm(), inven.getOptnNm());
+        Optional<Inven> item = invenRepository.findByPrdNmAndOptnNm(inven.getPrdNm(), inven.getOptnNm());
 
-        log.info(" findByPrdNmAndOptnNm  : {}", invens);
+        Assert.notNull(item, "Item is Null");
+    }
 
-        Assert.notNull(invens, "Invens is Null");
+    /**
+     * 재고수량 증/차감
+     * @throws Exception
+     */
+    @Test
+    public void updateTest() throws Exception {
+        Inven inven = getEntity(prdNm, optnNm);
+
+        Optional<Inven> item = invenRepository.findByPrdNmAndOptnNm(inven.getPrdNm(), inven.getOptnNm());
+
+        Inven result = item.orElse(null);
+
+        int qnty = 10;
+
+        Inven updateResult = setInvenQnty(result, qnty);
+        Assert.isTrue(qnty == updateResult.getPrdQnty(), "재고수량이 저장되지 않았습니다.");
+    }
+
+    @Transactional
+    public Inven setInvenQnty(Inven result, int qnty) throws Exception {
+        if(!result.psblQntyUpdate(qnty)) {
+            log.error(" impossibleQntyUpdate  : {}", result);
+            throw new Exception();
+        }
+        result.addQnty(qnty);
+
+        return result;
     }
 }

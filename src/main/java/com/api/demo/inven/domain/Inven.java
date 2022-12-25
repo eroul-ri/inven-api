@@ -35,4 +35,22 @@ public class Inven {
         this.optnNm = optnNm;
         this.prdQnty = prdQnty;
     }
+
+    /**
+     * 재고수량 업데이트 가능여부
+     * @param prdQnty
+     * @return
+     */
+    public boolean psblQntyUpdate(int prdQnty) {
+        return (this.prdQnty + prdQnty) >= 0;
+    }
+
+    /**
+     * 재고수량 업데이트
+     * @param prdQnty
+     */
+    public void addQnty(int prdQnty) {
+        this.prdQnty += prdQnty;
+    }
+    
 }
