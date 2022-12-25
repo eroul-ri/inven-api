@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository
 public interface InvenRepository extends JpaRepository<Inven, Long> {
-
-    List<Inven> findInvensByPrdNm(String prdNm);
+    List<Inven> findByPrdNm(String prdNm);
+    List<Inven> findByPrdNmAndOptnNm(String prdNm, String optnNm);
 }

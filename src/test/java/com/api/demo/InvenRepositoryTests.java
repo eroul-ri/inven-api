@@ -28,15 +28,30 @@ public class InvenRepositoryTests {
         log.info("data.sql executed...");
     }
 
+    public Inven getEntity(String prdNm, String optnNm) {
+        InvenRequestDto invenRequestDto = new InvenRequestDto(prdNm, optnNm);
+
+        return invenRequestDto.toEntity(invenRequestDto);
+    }
+
     @Test
     public void findByPrdNmTest() {
-        InvenRequestDto invenRequestDto = new InvenRequestDto("prd-a", null);
+        Inven inven = getEntity("prd-a", null);
 
-        Inven inven = invenRequestDto.toEntity(invenRequestDto);
+        List<Inven> invens = invenRepository.findByPrdNm(inven.getPrdNm());
 
-        List<Inven> invens = invenRepository.findInvensByPrdNm(inven.getPrdNm());
+        log.info(" findByPrdNm  : {}", invens);
 
-        log.info(" invens  : {}", invens);
+        Assert.notNull(invens, "Invens is Null");
+    }
+
+    @Test
+    public void findByPrdNmAndOptnNmTest() {
+        Inven inven = getEntity("prd-a", "opt-aa");
+
+        List<Inven> invens = invenRepository.findByPrdNmAndOptnNm(inven.getPrdNm(), inven.getOptnNm());
+
+        log.info(" findByPrdNmAndOptnNm  : {}", invens);
 
         Assert.notNull(invens, "Invens is Null");
     }
