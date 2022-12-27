@@ -50,7 +50,8 @@ public class Inven {
      * @param prdQnty
      */
     public void addQnty(int prdQnty) {
-        this.prdQnty += prdQnty;
+        if (this.psblQntyUpdate(prdQnty)) {
+            this.prdQnty += prdQnty;
+        }
     }
-    
 }
