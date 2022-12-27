@@ -5,11 +5,13 @@
 - Spring Boot 2.6.1 ver
 - JDK 8
 - H2 Embeded
+- data-JPA
 - Spring Docs 1.6
+- Git
 
 ###2. Linux 배포 방법
  **2.1. 준비환경**
- - JDK 8이 설치된 Linux 환경 
+ - 선행 : JDK8 설치, Git 설치, 8080 Port 허용
  - 프로젝트 Clone
    - 클론할 위치에서 아래 명령어 실행
      ```
@@ -24,8 +26,8 @@
     ```
 
 ###3. API 정보
-- Request URL : http://{IP}:9899/api/**
-- SWAGGER URL : http://{IP}:9899/swagger-ui/index.html
+- Request URL : http://{IP}:8080/api/**
+- SWAGGER URL : http://{IP}:8080/swagger-ui/index.html
 - Content-Type : application/json
 - **공통응답 예시**
 ```
@@ -47,7 +49,7 @@
 - **Request Sample**
 ```
 curl -X 'GET'
-  'http://localhost:9899/api/inven/prd-a?optnNm=opt-aa'
+  'http://localhost:8080/api/inven/prd-a?optnNm=opt-aa'
   -H 'accept: application/json'
 ```
 
@@ -58,7 +60,7 @@ curl -X 'GET'
 
 ```
 curl -X 'PUT'
-  'http://localhost:9899/api/inven/prd-a/decrement'
+  'http://localhost:8080/api/inven/prd-a/decrement'
   -H 'accept: application/json'
   -H 'Content-Type: application/json'
   -d '{
@@ -75,7 +77,7 @@ curl -X 'PUT'
 
 ```
 curl -X 'PUT'
-  'http://localhost:9899/api/inven/prd-a/decrement'
+  'http://localhost:8080/api/inven/prd-a/decrement'
   -H 'accept: application/json'
   -H 'Content-Type: application/json'
   -d '{
