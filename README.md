@@ -12,10 +12,11 @@
  - JDK 8이 설치된 Linux 환경 
  - 프로젝트 Clone
    - 클론할 위치에서 아래 명령어 실행
-   - clone한 디렉토리 위치에 ***demo-0.0.1-SNAPSHOT.jar*** 을 배포할 위치로 이동 해주세요.
-    ```
-   git clone https://github.com/eroul-ri/inven-api.git
-    ```
+     ```
+     git clone https://github.com/eroul-ri/inven-api.git
+     ```
+   - clone한 디렉토리 ROOT 경로에 위치한 ***demo-0.0.1-SNAPSHOT.jar*** 을 배포할 위치로 이동 해주세요.
+
  **2.2 프로젝트 실행**
  - 아래 명령어로 jar 파일 실행
     ```
@@ -23,8 +24,8 @@
     ```
 
 ###3. API 정보
-- Request URL : http://{IP}:8080/api/**
-- SWAGGER URL : http://{IP}:8080/swagger-ui/index.html
+- Request URL : http://{IP}:9899/api/**
+- SWAGGER URL : http://{IP}:9899/swagger-ui/index.html
 - Content-Type : application/json
 - **공통응답 예시**
 ```
@@ -46,7 +47,7 @@
 - **Request Sample**
 ```
 curl -X 'GET'
-  'http://localhost:8080/api/inven/prd-a?optnNm=opt-aa'
+  'http://localhost:9899/api/inven/prd-a?optnNm=opt-aa'
   -H 'accept: application/json'
 ```
 
@@ -57,7 +58,7 @@ curl -X 'GET'
 
 ```
 curl -X 'PUT'
-  'http://localhost:8080/api/inven/prd-a/decrement'
+  'http://localhost:9899/api/inven/prd-a/decrement'
   -H 'accept: application/json'
   -H 'Content-Type: application/json'
   -d '{
@@ -74,7 +75,7 @@ curl -X 'PUT'
 
 ```
 curl -X 'PUT'
-  'http://localhost:8080/api/inven/prd-a/decrement'
+  'http://localhost:9899/api/inven/prd-a/decrement'
   -H 'accept: application/json'
   -H 'Content-Type: application/json'
   -d '{
