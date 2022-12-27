@@ -21,8 +21,6 @@ class DemoApplicationTests {
 
         Inven inven = invenRequestDto.toEntity();
 
-        log.info("toEntity : {}", inven);
-
         Assert.assertEquals(invenRequestDto.getPrdNm(), inven.getPrdNm());
     }
 }

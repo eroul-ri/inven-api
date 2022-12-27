@@ -7,7 +7,22 @@
 - H2 Embeded
 - Spring Docs 1.6
 
-###2. API 정보
+###2. Linux 배포 방법
+ **2.1. 준비환경**
+ - JDK 8이 설치된 Linux 환경 
+ - 프로젝트 Clone
+   - 클론할 위치에서 아래 명령어 실행
+   - clone한 디렉토리 위치에 ***demo-0.0.1-SNAPSHOT.jar*** 을 배포할 위치로 이동 해주세요.
+    ```
+   git clone https://github.com/eroul-ri/inven-api.git
+    ```
+ **2.2 프로젝트 실행**
+ - 아래 명령어로 jar 파일 실행
+    ```
+    java -jar demo-0.0.1-SNAPSHOT.jar
+    ```
+
+###3. API 정보
 - Request URL : http://{IP}:8080/api/**
 - SWAGGER URL : http://{IP}:8080/swagger-ui/index.html
 - Content-Type : application/json
@@ -24,7 +39,7 @@
 }
 ```
 
- ####2.1 재고현황조회 API
+ ####3.1 재고현황조회 API
 - Request URL : /api/inven/{상품명}
 - Method : GET
 - QueryString : optnNm - 옵션명
@@ -35,7 +50,7 @@ curl -X 'GET'
   -H 'accept: application/json'
 ```
 
- ####2.2  재고수량 증가 API
+ ####3.2  재고수량 증가 API
 - Request URL : /api/inven/{상품명}/increment
 - Method : PUT
 - **Request Sample**
@@ -52,7 +67,7 @@ curl -X 'PUT'
 }'
 ```
 
- ####2.3  재고수량 감소 API
+ ####3.3  재고수량 감소 API
 - Request URL : /api/inven/{상품명}/decrement
 - Method : PUT
 - **Request Sample**

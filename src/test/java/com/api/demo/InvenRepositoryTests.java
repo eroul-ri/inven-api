@@ -48,8 +48,6 @@ public class InvenRepositoryTests {
 
         List<Inven> invens = invenRepository.findByPrdNm(inven.getPrdNm());
 
-        log.info(" findByPrdNm  : {}", invens);
-
         Assert.notNull(invens, "Invens is Null");
     }
 
@@ -77,16 +75,18 @@ public class InvenRepositoryTests {
 
         Inven result = item.orElse(null);
 
+        Assert.isNull(result, "결과 없음.");
+
         int qnty = 10;
 
         Inven updateResult = setInvenQnty(result, qnty);
+
         Assert.isTrue(qnty == updateResult.getPrdQnty(), "재고수량이 저장되지 않았습니다.");
     }
 
     @Transactional
     public Inven setInvenQnty(Inven result, int qnty) throws Exception {
         if(!result.psblQntyUpdate(qnty)) {
-            log.error(" impossibleQntyUpdate  : {}", result);
             throw new Exception();
         }
         result.addQnty(qnty);
