@@ -20,7 +20,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 public class InvenController {
-    private InvenService invenService;
+    private final InvenService invenService;
 
     private InvenController(InvenService invenService) {
         this.invenService = invenService;
